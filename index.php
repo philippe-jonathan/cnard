@@ -32,17 +32,32 @@
 		<table>
 			<thead>
 				<th>Lieu</th>
-				<th>Date</th>
+				<th>Précision</th>
+				<th>Nombre</th>
 				<th>Heure</th>
+				<th>Date</th>
 			</thead>
 			<?php 
 			$reponse = $bdd->query('SELECT * FROM infocanard');
 			while($donnees=$reponse->fetch()){
-				echo '<tr><td class="li">' . $donnees['lieu'] . '</td><td class="hr">' . $donnees['date'] . '</td>' . '<td class="hh">' . $donnees['hh'] . '</td></tr>' ;
+				$temps = date("d-m-Y", strtotime($donnees['date']));
+
+				echo 
+					'<tr><td class="li">' . $donnees['lieu'] . '</td>' . 
+
+					'<td>' . $donnees['adresse'] . '</td>' .
+
+				'<td>' . $donnees['nombre'] . '</td>' .
+
+				' <td class="hr">' . $temps . '</td>' .
+
+				'<td class="hh">' . $donnees['hh'] . '</td></tr>' ;
 			}
 			?>
 		</table>
-	</div>
 
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 </body>
 </html>

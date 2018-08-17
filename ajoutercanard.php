@@ -28,36 +28,44 @@
 			die('Erreur : ' . $e->getMessage());
 		}
 
-		if(empty($_POST['lieu']) && empty($_POST['date'] && empty($_POST['hh'])))
+		if(empty($_POST['lieu']) && empty($_POST['date'] && empty($_POST['hh'] && empty($_POST['nombre'])) ))
 		{
-			echo "";
+			echo "Veuillez remplir les champs demandé";
 		}
 
 		else
 		{ 
 			header('Location: index.php');
 			$lieu = $_POST['lieu'];
+			$adresse = $_POST['adresse'];
 			$date = $_POST['date'];
 			$hh = $_POST['hh'];
-			$bdd->query("INSERT INTO infocanard (lieu, date, hh)
-				VALUES ('$lieu', '$date', '$hh')");
+			$nombre = $_POST['nombre'];
+			$bdd->query("INSERT INTO infocanard (lieu, date, hh, nombre, adresse)
+				VALUES ('$lieu', '$date', '$hh', '$nombre', '$adresse')");
 			unset($lieu);
+			unset($adresse);
 			unset($date);
 			unset($hh);
+			unset($nombre);
 		}
 
 
 		?>
 
 		<form method="POST">
-			<input type="text" name="lieu" placeholder="Lieu">
+			<input type="text" name="lieu" placeholder="Lieu" class="place">
+			<input type="text" name="adresse" placeholder="Précision du lieu" class="place">
 			<input type="date" name="date" placeholder="Date">
 			<input type="time" name="hh" placeholder="Heure">
+			<input type="number" name="nombre" placeholder="Nombres" class="place">
 			<div id="but" >
 				<button id="buton" class="waves-effect waves-light btn-large">Ajouter</button>
 			</div>
 		</form>
 		<a id="back" class="waves-effect waves-light btn-large" href="index.php">Retour</a> 
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
