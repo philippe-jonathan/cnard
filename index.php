@@ -34,11 +34,11 @@
 				<th>Lieu</th>
 				<th>Précision</th>
 				<th>Nombre</th>
-				<th>Heure</th>
 				<th>Date</th>
+				<th>Heure</th>
 			</thead>
 			<?php 
-			$reponse = $bdd->query('SELECT * FROM infocanard');
+			$reponse = $bdd->query('SELECT * FROM `infocanard` ORDER BY `date` DESC, `hh` DESC');
 			while($donnees=$reponse->fetch()){
 				$temps = date("d-m-Y", strtotime($donnees['date']));
 
