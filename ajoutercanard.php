@@ -20,7 +20,7 @@
 		{
 
 			$bdd = new PDO('mysql:host=localhost;dbname=canard;charset=utf8',
-				'admin', 'azerty');
+				'identifiant', 'mot de passe');
 		}
 
 		catch (Exception $e)
